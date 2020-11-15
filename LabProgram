@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class LabProgram {
+   
+   /* Define your method here */
+   
+   public static void main(String[] args) {
+      /* Type your code here. */
+      
+      Scanner keyboard = new Scanner(System.in);
+      
+      String userPhrase;
+      String acronym;
+      
+      userPhrase = keyboard.nextLine();
+      
+      acronym = createAcronym(userPhrase);
+      
+      System.out.println(acronym);
+      
+   }
+   
+   public static String createAcronym(String userPhrase)
+   {
+      String acronym = "";
+      int currentIndex = 0;
+      int nextIndex = userPhrase.indexOf(" ");
+      boolean endLoop = false;
+      char initial;
+      while (currentIndex < userPhrase.length() && !endLoop)
+      {
+         
+         if (nextIndex < 0)
+         {
+           nextIndex = userPhrase.length() - 1; 
+           endLoop = true;
+         }
+         initial = userPhrase.substring(currentIndex, nextIndex).charAt(0);
+         if (Character.isUpperCase(initial))
+         {
+            acronym += initial;
+         }
+         currentIndex = nextIndex + 1;
+         nextIndex = userPhrase.indexOf(" ", currentIndex);
+         
+      }
+      
+      return acronym;
+      
+      
+      
+      
+   }
+}
