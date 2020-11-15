@@ -1,40 +1,55 @@
+//Importing the scanner class
 import java.util.Scanner;
 
+//main public class
 public class LabProgram {
    
    /* Define your method here */
-   
+   //main (public) method
    public static void main(String[] args) {
       /* Type your code here. */
       
+      //calling the scanner
       Scanner keyboard = new Scanner(System.in);
       
+      //initializing the variables
       String userPhrase;
       String acronym;
       
+      //taking user input from the console
+      System.out.print("Please enter your word that you want to make an acronym:\n>> ");
       userPhrase = keyboard.nextLine();
       
+      //creating the Acronym to return a String to the String variable acronym
       acronym = createAcronym(userPhrase);
       
-      System.out.println(acronym);
+      //print out the acronym returned
+      System.out.println("Your acronym is:\n" + acronym + "\nThank you for using the program!\nProgram Terminated.");
       
    }
    
    public static String createAcronym(String userPhrase)
    {
+   
+      //initalizing all of my planned variables
       String acronym = "";
       int currentIndex = 0;
       int nextIndex = userPhrase.indexOf(" ");
       boolean endLoop = false;
       char initial;
+      
+      //while the index of the current phrase doesn't return -1 or a value greater than the length of the userPhrase
       while (currentIndex < userPhrase.length() && !endLoop)
       {
          
+         //if there is no spaces
          if (nextIndex < 0)
          {
            nextIndex = userPhrase.length() - 1; 
            endLoop = true;
          }
+         
+         //finding the intial of the first word
          initial = userPhrase.substring(currentIndex, nextIndex).charAt(0);
          if (Character.isUpperCase(initial))
          {
@@ -43,6 +58,12 @@ public class LabProgram {
          currentIndex = nextIndex + 1;
          nextIndex = userPhrase.indexOf(" ", currentIndex);
          
+      }
+      
+      if (userPhrase.length() < 0)
+      {
+         System.out.println("No input was detected! Program terminated");
+         System.exit(0);
       }
       
       return acronym;
